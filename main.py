@@ -34,6 +34,7 @@ print(states[states.state == 'Texas'])  # the data series of booleans is passed 
 #   setup variables
 #
 gameover = False
+all_states = states.state.to_list()
 guesses = []
 score = 0
 #
@@ -49,6 +50,11 @@ while not gameover:
     #
     if answer == "Stop":
         gameover = True
+        guessed_states = [state.name for state in guesses]
+        missing_states = [
+            state for state in all_states if state not in guessed_states
+        ]
+        print(missing_states)
         break
     print(f"answer: {answer}")
     #
