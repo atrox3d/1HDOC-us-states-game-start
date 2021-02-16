@@ -1,6 +1,7 @@
 # from turtle import Turtle, Screen
 import turtle
 import pandas
+from state import State
 #
 #   screen setup
 #
@@ -35,7 +36,7 @@ gameover = False
 guesses = []
 score = 0
 while not gameover:
-    answer = screen.textinput(title="Guess the State", prompt="What's another state's name?").title()
+    answer = screen.textinput(title=f"{score}/{len(states)} States Correct", prompt="What's another state's name?").title()
     if answer == "Stop":
         gameover = True
         break
@@ -44,13 +45,16 @@ while not gameover:
     print(f"check: {check}")
     print(f"len check: {len(check)}")
     if len(check) != 0:
-        guesses.append(answer)
-        score += 0
-        print("#TODO write state on screen")
-        # print(type(check.state.values))
-        print(check.state.values[0])
-        print(check.x.values[0])
-        print(check.y.values[0])
+        state = State(
+            check.state.values[0],
+            check.x.values[0],
+            check.y.values[0],
+        )
+        state.show()
+        guesses.append(state)
+        score += 1
+        if score == 50:
+            gameover = True
 
 
 
