@@ -57,14 +57,29 @@ while not gameover:
     check = states[states.state == answer]
     print(f"check: {check}")
     print(f"len check: {len(check)}")
+    print(
+        f"check.state.values[0]  : '{check.state.values[0]}': {type(check.state.values[0])}\n"
+        f"str(check.state)       : '{str(check.state)}': {type(str(check.state))}\n"
+        f"str(check.state.item()): '{check.state.item()}': {type(check.state.item())}"
+    )
+    print(
+        f"check.x.values[0]      : {check.x.values[0]}: {type(check.x.values[0])}\n"
+        f"int(check.x)           : {int(check.x)}: {type(int(check.x))}\n"
+        f"check.x.item())        : {check.x.item()}: {type(check.x.item())}\n"
+    )
+    print(
+        f"check.y.values[0]      : {check.y.values[0]}: {type(check.y.values[0])}\n"
+        f"int(check.y)           : {int(check.y)}: {type(int(check.y))}\n"
+        f"check.y.item())        : {check.y.item()}: {type(check.y.item())}\n"
+    )
     if len(check) != 0:
         #
         #   if correct create new object to write state on map
         #
         state = State(
-            check.state.values[0],
-            check.x.values[0],
-            check.y.values[0],
+            check.state.item(),
+            check.x.item(),
+            check.y.item(),
         )
         state.show()
         #
