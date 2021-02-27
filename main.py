@@ -37,6 +37,30 @@ gameover = False
 all_states = states.state.to_list()
 guesses = []
 score = 0
+try:
+    with open("save") as savefile:
+        lines = savefile.readlines()
+        for line in lines:
+            statename = line.strip()
+            check = states[states.state == statename]
+            print(check)
+            newstate = State(
+                check.state.item(),
+                check.x.item(),
+                check.y.item(),
+            )
+            newstate.show()
+            #
+            #   save answer/state object
+            #
+            guesses.append(newstate)
+            #
+            #   update score
+            #
+            score += 1
+except FileNotFoundError:
+    print("save file not found")
+# exit()
 #
 #   main loop
 #
